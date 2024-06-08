@@ -106,7 +106,7 @@ function populateSidebar(data) {
         const dropdown = dropdownTitle.nextElementSibling;
         if (dropdown) {
           dropdown.style.display =
-            dropdown.style.display === "block" ? "none" : "block";
+            dropdown.style.display === "grid" ? "none" : "grid";
         }
       });
     });
