@@ -1,0 +1,143 @@
+body {
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  background-color: #f0f0f0;
+}
+
+.container {
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+  max-width: 1200px;
+  background-color: #ffffff;
+  border: 1px solid #ddd;
+  border-radius: 10px; /* Rounded corners */
+  overflow: hidden; /* Ensure child elements respect the container's rounded corners */
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Optional: add a shadow for a more modern look */
+  margin-top: 2rem;
+}
+
+.sidebar {
+  width: 250px;
+  padding: 20px;
+  background-color: #f9f9f9;
+  border-right: 1px solid #ddd;
+  height: 100vh;
+  overflow: scroll;
+}
+
+.content {
+  flex: 1;
+  padding: 20px;
+  overflow: auto; /* Ensure content area handles overflow */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+
+#visualiser-image {
+  max-width: 100%;
+  height: auto;
+  border-radius: 10px; /* Rounded corners for image */
+}
+
+#selection-text {
+  margin: 20px 0;
+  font-size: 1.2em;
+}
+
+.view-range {
+  padding: 10px 20px;
+  font-size: 1em;
+  background-color: #007bff;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.view-range:hover {
+  background-color: #0056b3;
+}
+
+.dropdown {
+  display: none; /* Hide the dropdown menu by default */
+}
+
+.parent-dropdown {
+  cursor: pointer;
+  padding: 10px 0;
+  padding: 16px 16px;
+  border-radius: 12px;
+  border: 1px solid #ddd;
+  margin-top: 0.6rem;
+}
+
+.dropdown-item {
+  padding: 8px 12px;
+  border-radius: 12px;
+  border: 1px solid #ddd;
+  margin-top: 0.6rem;
+  font-size: 12px;
+}
+
+.dropdown-item-title {
+  font-weight: bold;
+  font-size: 14px;
+}
+
+.dropdown-item-content {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  grid-gap: 10px;
+  margin-top: 10px;
+}
+
+.dropdown-item-content-img img {
+  width: 100%;
+  object-fit: cover;
+  border-radius: 4px;
+}
+
+.image-wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 12px;
+  border: 1px solid #ddd;
+  background-color: beige;
+  position: relative;
+}
+
+#visualiser-image {
+  max-width: 100%;
+  max-height: 100%;
+}
+
+.u-absolute {
+  position: absolute;
+}
+
+.u-full-width {
+  width: 100%;
+}
+
+/* Responsive styles */
+@media (max-width: 768px) {
+  .container {
+    flex-direction: column; /* Stack elements vertically on smaller screens */
+  }
+
+  .sidebar {
+    width: 100%;
+    border-right: none;
+    border-bottom: 1px solid #ddd; /* Move border to bottom for vertical layout */
+  }
+}

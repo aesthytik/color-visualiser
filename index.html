@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Worktop Visualiser</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <div class="container">
+      <div class="sidebar"></div>
+      <div class="content">
+        <div class="image-wrapper">
+          <img
+            id="visualiser-image"
+            src="/assets/layer-base.png"
+            alt="Visualiser"
+          />
+          <img
+            style="top: 0; left: 0; z-index: 1; border-radius: 13px"
+            id="c-visualiser__canvas--wall"
+            class="u-absolute u-full-width"
+            srcset="
+              https://res.cloudinary.com/dy7hqiitw/image/upload/f_auto,q_auto/v1585864974/visualiser/dayroom-yellow-wall.png
+            "
+            alt="Wall"
+          />
+          <img
+            style="top: 0; left: 0; z-index: 2"
+            id="c-visualiser__canvas--worktop"
+            class="u-absolute u-full-width"
+            srcset="
+              https://res.cloudinary.com/dy7hqiitw/image/upload/f_auto,q_auto/v1587720353/worktop-express-uk/visualiser/wood/beech-solid-wood-worktop.png
+            "
+            alt="Worktop"
+          />
+          <img
+            style="top: 0; left: 0; z-index: 3"
+            id="c-visualiser__canvas--cabinet"
+            class="u-absolute u-full-width"
+            srcset="
+              https://res.cloudinary.com/dy7hqiitw/image/upload/f_auto,q_auto/v1585864989/visualiser/pitch-black-shaker-cabinet.png
+            "
+            alt="Cabinet"
+          />
+        </div>
+        <!-- <p id="selection-text">
+          Your Selection: Titanio Doha Solid FENIX NTM Worktops - From £495.00
+        </p> -->
+      </div>
+    </div>
+    <script src="scripts.js"></script>
+  </body>
+</html>
