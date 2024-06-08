@@ -5,7 +5,6 @@ body {
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 100vh;
   background-color: #f0f0f0;
 }
 
@@ -114,6 +113,8 @@ body {
   border: 1px solid #ddd;
   background-color: beige;
   position: relative;
+  max-width: 100%;
+  max-height: 100%;
 }
 
 #visualiser-image {
@@ -132,15 +133,22 @@ body {
 .selected-image {
   outline: 2px solid black; /* Change this to the desired border color */
 }
+
 /* Responsive styles */
 @media (max-width: 768px) {
   .container {
-    flex-direction: column; /* Stack elements vertically on smaller screens */
+    flex-direction: column;
+    padding: 20px; /* Stack elements vertically on smaller screens */
+    margin-top: 0;
   }
 
   .sidebar {
     width: 100%;
     border-right: none;
+    padding: 0;
     border-bottom: 1px solid #ddd; /* Move border to bottom for vertical layout */
+    height: auto; /* Adjust height for vertical layout */
+    background-color: transparent;
+    border-bottom: none;
   }
 }

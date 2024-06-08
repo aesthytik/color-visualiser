@@ -2,48 +2,55 @@ const path = "/assets/visualiser.json";
 let sidebarData = {};
 let selectedImage = null;
 
-function createSidebarItem(title, items) {
+function createSidebarItem(subcategory, categoryName) {
   const itemElement = document.createElement("div");
-  itemElement.className = "dropdown-item";
 
-  const itemTitle = document.createElement("div");
-  itemTitle.className = "dropdown-item-title";
-  itemTitle.textContent = title;
-  itemElement.appendChild(itemTitle);
+  if (subcategory.sub) {
+    itemElement.className = "dropdown-item";
+    const itemTitle = document.createElement("div");
+    itemTitle.className = "dropdown-item-title";
+    itemTitle.textContent = subcategory.name;
+    itemElement.appendChild(itemTitle);
+  }
 
   const itemContentWrapper = document.createElement("div");
   itemContentWrapper.className = "dropdown-item-content-wrapper";
-
   const itemContent = document.createElement("div");
   itemContent.className = "dropdown-item-content";
-  if (Array.isArray(items)) {
-    items.forEach((item) => {
-      const itemDiv = document.createElement("div");
-      const itemImage = document.createElement("img");
-      itemDiv.className = "dropdown-item-content-img";
-      itemImage.srcset = item.icon;
+  console.log("Subcategory:", subcategory);
+  const items = subcategory.sub ? subcategory.sub : [subcategory];
+  items.forEach((item) => {
+    const itemDiv = document.createElement("div");
+    const itemImage = document.createElement("img");
+    itemDiv.className = "dropdown-item-content-img";
+    itemImage.srcset = item.icon;
 
-      itemImage.addEventListener("click", () => {
-        // Update the worktop image
-        document.getElementById("c-visualiser__canvas--worktop").srcset =
-          item.layer;
+    itemImage.addEventListener("click", () => {
+      // Determine which part of the visualizer to update
+      const targetElementId =
+        categoryName === "Wall"
+          ? "c-visualiser__canvas--wall"
+          : categoryName === "Cabinets"
+          ? "c-visualiser__canvas--cabinet"
+          : "c-visualiser__canvas--worktop"; // Default to worktop if type is not specified
 
-        // Remove border from the previously selected image
-        if (selectedImage) {
-          selectedImage.classList.remove("selected-image");
-        }
+      // Update the visualizer image
+      document.getElementById(targetElementId).srcset = item.layer;
+      const selectionText = `Your Selection: ${item.name || item.title}`;
+      document.getElementById("selection-text").textContent = selectionText;
+      // Remove border from the previously selected image
+      if (selectedImage) {
+        selectedImage.classList.remove("selected-image");
+      }
 
-        // Add border to the clicked image
-        itemImage.classList.add("selected-image");
-        selectedImage = itemImage;
-      });
-
-      itemDiv.appendChild(itemImage);
-      itemContent.appendChild(itemDiv);
+      // Add border to the clicked image
+      itemImage.classList.add("selected-image");
+      selectedImage = itemImage;
     });
-  } else {
-    console.warn(`Expected an array but got ${typeof items}`);
-  }
+
+    itemDiv.appendChild(itemImage);
+    itemContent.appendChild(itemDiv);
+  });
 
   itemContentWrapper.appendChild(itemContent);
   itemElement.appendChild(itemContentWrapper);
@@ -70,10 +77,7 @@ function populateSidebar(data) {
 
       if (Array.isArray(category.sub)) {
         category.sub.forEach((subcategory) => {
-          const sidebarItem = createSidebarItem(
-            subcategory.name,
-            subcategory.sub
-          );
+          const sidebarItem = createSidebarItem(subcategory, category.name);
           dropdown.appendChild(sidebarItem);
         });
       } else {
