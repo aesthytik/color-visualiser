@@ -70,6 +70,13 @@ body {
   display: none; /* Hide the dropdown menu by default */
 }
 
+.dropdown-new {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  grid-gap: 10px;
+  margin-top: 10px;
+}
+
 .parent-dropdown {
   cursor: pointer;
   padding: 10px 0;

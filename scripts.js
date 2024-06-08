@@ -14,10 +14,11 @@ function createSidebarItem(subcategory, categoryName) {
   }
 
   const itemContentWrapper = document.createElement("div");
-  itemContentWrapper.className = "dropdown-item-content-wrapper";
   const itemContent = document.createElement("div");
-  itemContent.className = "dropdown-item-content";
-  console.log("Subcategory:", subcategory);
+  if (subcategory.sub) {
+    itemContentWrapper.className = "dropdown-item-content-wrapper";
+    itemContent.className = "dropdown-item-content";
+  }
   const items = subcategory.sub ? subcategory.sub : [subcategory];
   items.forEach((item) => {
     const itemDiv = document.createElement("div");
@@ -73,8 +74,8 @@ function populateSidebar(data) {
       parentDropdown.appendChild(dropdownTitle);
 
       const dropdown = document.createElement("div");
-      dropdown.className = "dropdown";
-
+      dropdown.className =
+        category.name === "Worktops" ? "dropdown" : "dropdown-new";
       if (Array.isArray(category.sub)) {
         category.sub.forEach((subcategory) => {
           const sidebarItem = createSidebarItem(subcategory, category.name);
