@@ -129,6 +129,9 @@ body {
   width: 100%;
 }
 
+.selected-image {
+  outline: 2px solid black; /* Change this to the desired border color */
+}
 /* Responsive styles */
 @media (max-width: 768px) {
   .container {

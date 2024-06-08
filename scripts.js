@@ -1,5 +1,6 @@
 const path = "/assets/visualiser.json";
 let sidebarData = {};
+let selectedImage = null;
 
 function createSidebarItem(title, items) {
   const itemElement = document.createElement("div");
@@ -21,16 +22,23 @@ function createSidebarItem(title, items) {
       const itemImage = document.createElement("img");
       itemDiv.className = "dropdown-item-content-img";
       itemImage.srcset = item.icon;
-      // const itemText = document.createElement("span");
-      // itemText.textContent = item.name;
 
       itemImage.addEventListener("click", () => {
+        // Update the worktop image
         document.getElementById("c-visualiser__canvas--worktop").srcset =
           item.layer;
+
+        // Remove border from the previously selected image
+        if (selectedImage) {
+          selectedImage.classList.remove("selected-image");
+        }
+
+        // Add border to the clicked image
+        itemImage.classList.add("selected-image");
+        selectedImage = itemImage;
       });
 
       itemDiv.appendChild(itemImage);
-      // itemDiv.appendChild(itemText);
       itemContent.appendChild(itemDiv);
     });
   } else {
